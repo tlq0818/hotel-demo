@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatterProjectSettings">
+    <option name="projectSpecificProfile">
+      <ProjectSpecificProfile>
+        <option name="disabledFileTypes" value="jsp;html;css;js;xml;yml;" />
+        <option name="formatter" value="ECLIPSE" />
+        <option name="importOrderConfigFilePath" value="E:/idea_setting/example.importorder" />
+        <option name="importOrderFromFile" value="true" />
+        <option name="pathToConfigFileJava" value="E:/idea_setting/code-style.xml" />
+        <option name="selectedJavaProfile" value="EnnFormatter" />
+      </ProjectSpecificProfile>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="corretto-1.8" project-jdk-type="JavaSDK" />
+  <component name="SaveActionSettings">
+    <option name="actions">
+      <set>
+        <option value="activate" />
+        <option value="organizeImports" />
+        <option value="reformat" />
+        <option value="missingOverrideAnnotation" />
+        <option value="useBlocks" />
+        <option value="suppressAnnotation" />
+        <option value="unnecessarySemicolon" />
+      </set>
+    </option>
+    <option name="configurationPath" value="E:\idea_setting\Eclipse_All_Configuration_20200221.epf" />
+  </component>
+</project>
