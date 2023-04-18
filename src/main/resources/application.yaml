@@ -2,9 +2,9 @@ server:
   port: 8089
 spring:
   datasource:
-    url: jdbc:mysql://mysql:3306/heima?useSSL=false
+    url: jdbc:mysql://localhost:3306/heima?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone = GMT
     username: root
-    password: 123
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:
