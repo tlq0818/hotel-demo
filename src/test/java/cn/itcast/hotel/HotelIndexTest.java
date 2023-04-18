@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import org.apache.http.HttpHost;
 import org.apache.ibatis.annotations.Update;
+import org.apache.lucene.search.TotalHits;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkItemRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -13,6 +14,8 @@ import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
@@ -20,6 +23,11 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -154,5 +162,18 @@ public class HotelIndexTest {
         // 3.输出
         System.err.println(exists ? "索引库已经存在！" : "索引库不存在！");
     }
-
+    @Test
+    void testMatchall() throws IOException{
+        SearchRequest request = new SearchRequest("hotel");
+        request.source().query(QueryBuilders.matchAllQuery()).size(20);
+        SearchResponse response= client.search(request, RequestOptions.DEFAULT);
+        SearchHits searchHits = response.getHits();
+        TotalHits total = searchHits.getTotalHits();
+        System.out.println("搜索到"+total+"条数据");
+        SearchHit[] hits = searchHits.getHits();
+        Stream.of(hits).forEach(e->{
+            String json = e.getSourceAsString();
+            HotelDoc hotelDoc=JSON.parseObject(json,HotelDoc.class);
+            System.out.println("hotelDoc="+hotelDoc);});
+    }
 }
