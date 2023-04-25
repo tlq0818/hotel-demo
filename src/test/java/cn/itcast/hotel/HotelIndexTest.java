@@ -1,6 +1,10 @@
 package cn.itcast.hotel;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -176,4 +180,56 @@ public class HotelIndexTest {
             HotelDoc hotelDoc=JSON.parseObject(json,HotelDoc.class);
             System.out.println("hotelDoc="+hotelDoc);});
     }
-}
+    @Test
+    void testT() throws ParseException{
+       /* if(complexReqInfoVo.getIfUnloading().equals("01")&&complexReqInfoVo.getDeliveryForm().equals("01")){*/
+        ArrayList<timeTest> delList = new ArrayList<>();
+        timeTest timeTest1 = new timeTest();
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date1 = df2.parse("2023-04-21 10:04");
+        Date date2 = df2.parse("2023-04-22 14:04");
+        Date date3 = df2.parse("2023-04-23 10:04");
+        Date date4 = df2.parse("2023-04-23 10:08");
+        Date date5 = df2.parse("2023-04-21 10:06");
+        Date date6 = df2.parse("2023-04-21 14:03");
+        Date date7 = df2.parse("2023-04-20 10:04");
+        Date date8 = df2.parse("2023-04-20 14:04");
+        timeTest1.setArrivalEndDate(date2);
+        timeTest1.setArrivalStartDate(date1);
+        /*timeTest timeTest2 = new timeTest();
+        timeTest2.setArrivalEndDate(date8);
+        timeTest2.setArrivalStartDate(date7);
+        timeTest timeTest3 = new timeTest();
+        timeTest3.setArrivalEndDate(date4);
+        timeTest3.setArrivalStartDate(date3);*/
+        timeTest timeTest5 = new timeTest();
+        Date date00= df2.parse("2023-04-21 10:04");
+        Date date9 = df2.parse("2023-04-21 14:04");
+        timeTest5.setArrivalEndDate(date9);
+        timeTest5.setArrivalStartDate(date00);
+    //    timeTest timeTest4 = new timeTest();
+      /*  timeTest4.setArrivalEndDate(date6);
+        timeTest4.setArrivalStartDate(date5);*/
+        delList.add(timeTest1);
+        delList.add(timeTest5);
+//        delList.add(timeTest2);
+  //      delList.add(timeTest3);
+  //      delList.add(timeTest4);
+        for(int i=0;i<delList.size()-1;i++){
+                Date   start0=delList.get(i).getArrivalStartDate();
+                Date  end0=delList.get(i).getArrivalEndDate();
+                for(int j=i+1;j<delList.size();j++){
+                    Date start1=delList.get(j).getArrivalStartDate();
+                    Date  end1=delList.get(j).getArrivalEndDate();
+                    //不重复不处理
+                    if(start0.compareTo(end1)>0 || end0.compareTo(start1)<0){
+                        System.out.println("时间段不重复");
+                    }else{
+                        System.out.println("有时间段重复");
+                    }
+                }
+
+            }
+
+        }
+    }
